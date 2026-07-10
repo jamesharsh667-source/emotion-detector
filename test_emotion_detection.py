@@ -59,6 +59,21 @@ class TestEmotionDetector(unittest.TestCase):
 
         self.assertEqual(result["dominant_emotion"], "anger")
 
+    def test_status_code_400_returns_none_values(self):
+        with patch("EmotionDetection.emotion_detection.requests.post") as mock_post:
+            mock_post.return_value.status_code = 400
+            result = emotion_detector("")
+
+        expected_output = {
+            "anger": None,
+            "disgust": None,
+            "fear": None,
+            "joy": None,
+            "sadness": None,
+            "dominant_emotion": None
+        }
+        self.assertEqual(result, expected_output)
+
 
 if __name__ == "__main__":
     unittest.main()

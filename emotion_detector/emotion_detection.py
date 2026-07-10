@@ -3,6 +3,18 @@
 import requests
 
 
+def _empty_emotion_response():
+    """Return the expected response for invalid input."""
+    return {
+        "anger": None,
+        "disgust": None,
+        "fear": None,
+        "joy": None,
+        "sadness": None,
+        "dominant_emotion": None
+    }
+
+
 def emotion_detector(text_to_analyze):
     """Return emotion scores and the dominant emotion for the supplied text."""
     url = (
@@ -19,6 +31,9 @@ def emotion_detector(text_to_analyze):
     }
 
     response = requests.post(url, json=input_json, headers=headers, timeout=30)
+    if response.status_code == 400:
+        return _empty_emotion_response()
+
     formatted_response = response.json()
     emotions = formatted_response["emotionPredictions"][0]["emotion"]
     dominant_emotion = max(emotions, key=emotions.get)
