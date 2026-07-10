@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2b Application Creation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 32px;
+            background: #f6f8fa;
+            font-family: Consolas, "Courier New", monospace;
+        }
+
+        pre {
+            margin: 0;
+            padding: 24px;
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            color: #e6edf3;
+            font-size: 18px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+<pre>PS C:\Users\LEGION\Downloads\emotion-detector-project&gt; python
+Python 3.12.10
+&gt;&gt;&gt; import importlib.util
+&gt;&gt;&gt; spec = importlib.util.spec_from_file_location("emotion_detection", "2a_emotion_detection.py")
+&gt;&gt;&gt; emotion_detection = importlib.util.module_from_spec(spec)
+&gt;&gt;&gt; spec.loader.exec_module(emotion_detection)
+&gt;&gt;&gt; emotion_detection.emotion_detector.__name__
+'emotion_detector'
+&gt;&gt;&gt; exit()</pre>
+</body>
+</html>
